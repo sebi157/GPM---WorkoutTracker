@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class WorkoutsService {
 
-  baseApiURL: string = "https://3fd6-89-137-100-230.ngrok-free.app";
+  baseApiURL: string = "http://localhost:5206";
   constructor(private http: HttpClient) { }
 
   getAllWorkouts(): Observable<Workout[]>{
