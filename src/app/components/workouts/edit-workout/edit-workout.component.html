@@ -1,0 +1,37 @@
+<div class="container my-5">
+    <h1 class="mb-3">Edit selected workout: </h1>
+    <form #form="ngForm" (ngSubmit)="updateWorkout()">
+        <div class="mb-3">
+            <label for="idRdonly" class="form-label">Workout id: </label>
+            <input type="text" class="form-control" id="idRdonly" name="idRdonly" readonly [(ngModel)]="workoutDetails.id">
+          </div>
+        <div class="mb-3">
+          <label for="nameInput" class="form-label">Workout name:</label>
+          <input type="text" class="form-control" id="nameInput" name="name" [(ngModel)]="workoutDetails.name">
+        </div>
+        <div class="mb-3">
+            <label for="descriptionInput" class="form-label">Description:</label>
+            <input type="text" class="form-control" id="descriptionInput" name="description" [(ngModel)]="workoutDetails.description">
+        </div>
+        <div class="mb-3">
+            <label for="dateInput" class="form-label">Date:</label>
+            <input type="date" class="form-control" id="dateInput" name="w_Date" [(ngModel)]="workoutDetails.w_Date">
+        </div>
+        <div *ngFor="let exercise of workoutDetails.exercises; let i = index">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" [(ngModel)]="workoutDetails.exercises[i]" name = 'exercise' [ngModelOptions]="{standalone: true}" readonly>
+              <button class="btn btn-danger" (click)="deleteExercise(i)">Delete</button>
+            </div>
+        </div>
+          
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" [(ngModel)]="newExercise" name = 'newex' placeholder="Add new exercise">
+            <input type="button" class="btn btn-primary" (click)="addExercise()" value="Add">
+        </div>          
+        <div>Number of exercises added: {{workoutDetails.exercises.length}}</div>
+        <br>
+        <button type="submit" class="btn btn-primary me-2">Save</button>
+        <button type="button" class="btn btn-danger" (click)="deleteWorkout(workoutDetails.id)">Delete</button>
+      </form>
+</div>
+

@@ -1,0 +1,25 @@
+<div class="container my-5">
+    <h1 class="mb-3">Log a new workout: </h1>
+    <form #form="ngForm" (ngSubmit)="addWorkout()">
+        <div class="mb-3">
+          <label for="nameInput" class="form-label">Workout name:</label>
+          <input type="text" class="form-control" id="nameInput" name="name" [(ngModel)]="addWorkoutRequest.name">
+        </div>
+        <div class="mb-3">
+            <label for="descriptionInput" class="form-label">Description:</label>
+            <input type="text" class="form-control" id="descriptionInput" name="description" [(ngModel)]="addWorkoutRequest.description">
+        </div>
+        <div class="mb-3">
+            <label for="dateInput" class="form-label">Date:</label>
+            <input type="date" class="form-control" id="dateInput" name="w_Date" [(ngModel)]="addWorkoutRequest.w_Date">
+        </div>
+        <label class="form-label">Exercises:</label>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" #inputExercise>
+            <button class="btn btn-outline-secondary" (click)="addExercise(inputExercise.value); inputExercise.value=''" type="button">+</button>
+        </div>
+        <div>Number of exercises added: {{addWorkoutRequest.exercises.length}}</div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>

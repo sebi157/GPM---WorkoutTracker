@@ -1,0 +1,30 @@
+<div class="container my-5">
+    <h1 class="mb-3">Your logged workouts:</h1>
+    <table class="table table-dark table-hover" *ngIf="workouts && workouts.length>0">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Date</th>
+        <th scope="col">List of exercises</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let workout of workouts">
+            <td>{{workout.id | slice:0:3 }}</td>
+            <td>{{workout.name}}</td>
+            <td>{{workout.description}}</td>
+            <td>{{workout.w_Date}}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let exercise of workout.exercises">{{ exercise }}</li>
+                </ul>
+            </td>
+            <td><a [routerLink]="['/workouts','edit',workout.id]">View</a></td>
+        </tr>
+    </tbody>
+  </table>
+  <p *ngIf="!workouts || workouts.length == 0">No logged workouts!</p>
+</div>
