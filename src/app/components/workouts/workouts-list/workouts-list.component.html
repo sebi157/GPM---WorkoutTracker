@@ -8,7 +8,7 @@
         <th scope="col">Description</th>
         <th scope="col" (click)="sortWorkoutsByDate()" style="cursor: pointer;">
           Date
-          <i class="fas" [ngClass]="{'fa-sort-up': sortDirection === 'asc', 'fa-sort-down': sortDirection === 'desc'}"></i>
+          <fa-icon [icon]="faSort" size="xs"></fa-icon>
         </th>
         <th scope="col">List of exercises</th>
         <th></th>

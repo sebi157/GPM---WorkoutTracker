@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faSort } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-workouts-list',
@@ -19,6 +20,7 @@ export class WorkoutsListComponent implements OnInit{
   workouts: Workout[] = [];
   sortDirection = 'desc'; // or 'asc'
   faPenToSquare = faPenToSquare;
+  faSort = faSort;
 
   constructor(private workoutsService: WorkoutsService ) {}
   
