@@ -14,10 +14,18 @@
             <input type="date" class="form-control" id="dateInput" name="w_Date" [(ngModel)]="addWorkoutRequest.w_Date">
         </div>
         <label class="form-label">Exercises:</label>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" #inputExercise>
-            <button class="btn btn-outline-secondary" (click)="addExercise(inputExercise.value); inputExercise.value=''" type="button">+</button>
+        
+        <div *ngFor="let exercise of addWorkoutRequest.exercises; let i = index">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" [(ngModel)]="addWorkoutRequest.exercises[i]" name = 'exercise' [ngModelOptions]="{standalone: true}" readonly>
+              <button class="btn btn-danger" (click)="deleteExercise(i)">Delete</button>
+            </div>
         </div>
+       
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" [(ngModel)]="newExercise" name = 'newex' placeholder="Add new exercise">
+            <input type="button" class="btn btn-primary" (click)="addExercise()" value="Add">
+        </div>          
         <div>Number of exercises added: {{addWorkoutRequest.exercises.length}}</div>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>

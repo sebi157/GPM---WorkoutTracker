@@ -67,11 +67,19 @@ export class EditWorkoutComponent implements OnInit{
     })
   }
 
-  deleteWorkout(id: string){
-    this.workoutService.deleteWorkout(id).subscribe({
-      next: (value)=>{
-        this.router.navigate(['workouts'])
-      }
-    })
+  deleteWorkout(id: string) {
+    const isConfirmed = confirm('Are you sure you want to delete this workout?');
+    
+    if (isConfirmed) {
+      this.workoutService.deleteWorkout(id).subscribe({
+        next: (value) => {
+          console.log('Workout deleted successfully.');
+          this.router.navigate(['workouts']);
+        },
+        error: (error) => {
+          console.error('Error deleting workout:', error);
+        }
+      });
+    }
   }
 }

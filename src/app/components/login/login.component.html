@@ -1,0 +1,30 @@
+<div class="login-component">
+    <h2>Login</h2>
+    <div id="g_id_onload"
+         data-client_id="YOUR_GOOGLE_CLIENT_ID"
+         data-login_uri="YOUR_LOGIN_REDIRECT_URI"
+         data-auto_prompt="false">
+    </div>
+    <div id="google-signin-button" style="display:none;">Sign in with Google</div>
+  </div>
+  
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script>
+    function handleCredentialResponse(response) {
+      // Handle the ID token in response for signing in the user
+      console.log("Encoded JWT ID token: " + response.credential);
+    }
+  
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: "YOUR_GOOGLE_CLIENT_ID",
+        callback: handleCredentialResponse
+      });
+      google.accounts.id.renderButton(
+        document.getElementById("google-signin-button"),
+        { theme: "outline", size: "large" }  // Customize button appearance
+      );
+      google.accounts.id.prompt(); // Display the One Tap sign-in prompt
+    };
+  </script>
+  

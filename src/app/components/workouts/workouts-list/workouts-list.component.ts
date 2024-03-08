@@ -5,17 +5,21 @@ import { WorkoutsService } from '../../../services/workouts.service';
 import { response } from 'express';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-workouts-list',
   standalone: true,
-  imports: [CommonModule,HttpClientModule,RouterModule],
+  imports: [CommonModule,HttpClientModule,RouterModule,FontAwesomeModule],
   templateUrl: './workouts-list.component.html',
   styleUrl: './workouts-list.component.css'
 })
 export class WorkoutsListComponent implements OnInit{
   workouts: Workout[] = [];
-  
+  sortDirection = 'desc'; // or 'asc'
+  faPenToSquare = faPenToSquare;
+
   constructor(private workoutsService: WorkoutsService ) {}
   
   ngOnInit(): void {
@@ -31,6 +35,19 @@ export class WorkoutsListComponent implements OnInit{
       }
     }) 
     console.log(this.workouts);
+  }
+  
+  sortWorkoutsByDate(): void {
+    this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+  
+    this.workouts.sort((a, b) => {
+      const dateA = new Date(a.w_Date);
+      const dateB = new Date(b.w_Date);
+  
+      if (dateA < dateB) return this.sortDirection === 'asc' ? -1 : 1;
+      if (dateA > dateB) return this.sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
   }
   
 }
