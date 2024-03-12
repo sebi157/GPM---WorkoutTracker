@@ -23,6 +23,7 @@ export class WorkoutsListComponent implements OnInit{
   faPenToSquare = faPenToSquare;
   faSort = faSort;
   faPlus = faPlus;
+  isLoading = true;
 
   constructor(private workoutsService: WorkoutsService ) {}
   
@@ -33,9 +34,11 @@ export class WorkoutsListComponent implements OnInit{
           wko.w_Date = wko.w_Date.toString();
         });
         this.workouts = workouts;
+        this.isLoading = false;
       },
       error: (response) => {
         console.log(response);
+        this.isLoading = false;
       }
     }) 
     console.log(this.workouts);
