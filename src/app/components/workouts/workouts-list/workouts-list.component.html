@@ -36,7 +36,7 @@
         </tr>
     </tbody>
   </table>
-  <p *ngIf="!workouts || workouts.length == 0">No logged workouts!</p>
+  <p *ngIf="(!isLoading && !workouts) || (!isLoading && workouts.length == 0)">No logged workouts!</p>
   <a class="btn btn-dark btn-lg rounded-circle" role="button" [routerLink]="['/workouts','add']" style="margin-left: 46%;">
     <fa-icon [icon]="faPlus" size="xl"></fa-icon>
   </a>
