@@ -1,6 +1,9 @@
 <div class="container my-5">
     <h1 class="mb-3">Your logged workouts:</h1>
-    <table class="table table-dark table-hover" *ngIf="workouts && workouts.length>0">
+    <div *ngIf="isLoading">
+      <p>Loading data, please wait...</p>
+    </div>
+    <table class="table table-dark table-hover" *ngIf="workouts && workouts.length>0 && !isLoading">
     <thead>
       <tr>
         <th scope="col">Id</th>
