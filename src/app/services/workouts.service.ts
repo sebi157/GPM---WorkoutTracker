@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class WorkoutsService {
 
-  baseApiURL: string = "https://gpm-api.azurewebsites.net";
+  baseApiURL: string = "https://gpm2main.azurewebsites.net";
   constructor(private http: HttpClient) { }
 
   getAllWorkouts(): Observable<Workout[]>{
